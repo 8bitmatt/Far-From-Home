@@ -4,17 +4,32 @@
 <style type="text/css">
 /* Sprite animations 
 ======================== */
+
+@-moz-keyframes moveBg {
+	0% { -moz-transform: translate(0, 0); }
+	100% { -moz-transform: translate(0, 1200px); }
+}
 @-webkit-keyframes moveBg {
 	0% { -webkit-transform: translate3d(0px, 0, 0px); }
 	100% { -webkit-transform: translate3d(0px, 1200px, 0px); }
 }
 
+@-moz-keyframes spriteSpaceman {
+	0%, 100% { background-position: 0 0;}
+	50% { background-position: -23px 0;}
+}
 @-webkit-keyframes spriteSpaceman {
 	0%, 100% { background-position: 0 0;}
 	50% { background-position: -23px 0;}
 }
 
 
+@-moz-keyframes spriteMmicro {
+	0%, 100% { background-position: 0 0;}
+	25% { background-position: -17px 0;}
+	50% { background-position: -34px 0;}
+	75% { background-position: -51px 0;}
+}
 @-webkit-keyframes spriteMmicro {
 	0%, 100% { background-position: 0 0;}
 	25% { background-position: -17px 0;}
@@ -22,6 +37,12 @@
 	75% { background-position: -51px 0;}
 }
 
+@-moz-keyframes spriteMnorm {
+	0%, 100% { background-position: 0 0;}
+	25% { background-position: -32px 0;}
+	50% { background-position: -63px 0;}
+	75% { background-position: -96px 0;}
+}
 @-webkit-keyframes spriteMnorm {
 	0%, 100% { background-position: 0 0;}
 	25% { background-position: -32px 0;}
@@ -29,6 +50,12 @@
 	75% { background-position: -96px 0;}
 }
 
+@-moz-keyframes spriteMmega {
+	0%, 100% { background-position: 0 0;}
+	25% { background-position: -63px 0;}
+	50% { background-position: -128px 0;}
+	75% { background-position: -191px 0;}
+}
 @-webkit-keyframes spriteMmega {
 	0%, 100% { background-position: 0 0;}
 	25% { background-position: -63px 0;}
@@ -36,11 +63,19 @@
 	75% { background-position: -191px 0;}
 }
 
+@-moz-keyframes spriteSolarwind {
+	0%, 100% { background-position: 0 0;}
+	50% { background-position: -30px 0;}
+}
 @-webkit-keyframes spriteSolarwind {
 	0%, 100% { background-position: 0 0;}
 	50% { background-position: -30px 0;}
 }
 
+@-moz-keyframes spriteO2bottle {
+	0%, 100% { background-position: 0 0;}
+	50% { background-position: -11px 0;}
+}
 @-webkit-keyframes spriteO2bottle {
 	0%, 100% { background-position: 0 0;}
 	50% { background-position: -11px 0;}
@@ -51,6 +86,7 @@
 }
 
 .pause {
+	-moz-animation-play-state: paused !important;
 	-webkit-animation-play-state: paused !important;
 }
 
@@ -63,19 +99,21 @@ html, body {
 	height: 100%;
 	overflow: hidden;
 	image-rendering: -webkit-optimize-contrast;
+	image-rendering: -moz-crisp-edges;
 }
 #wrap { 
 	position: relative;
-	width: 640px;
-	height: 600px;
-	margin: 50px auto 30px;
+	width: 768px;
+	height: 720px;
+	margin: 30px auto;
 	}
 #screen {
 	position: relative;
 	width: 256px;
 	height: 240px;
 	overflow: hidden;
-	zoom:2.5;
+	zoom:3;
+	-moz-transform: scale(3); -moz-transform-origin: 0 0;
 }
 #screen div {
 	position: absolute;
@@ -99,6 +137,7 @@ html, body {
 
 
 #game #bg-layer.animate { 
+	-moz-animation: moveBg 30s linear infinite;
 	-webkit-animation: moveBg 30s linear infinite;
 	-webkit-backface-visibility: hidden; /* to maybe prevent flickering */
 }
@@ -148,7 +187,10 @@ ol.meter.hurt li.meter-tick {
 	background: url(spaceman.png) no-repeat;
 	z-index: 2;
 }
-#spaceman.animate {	-webkit-animation: spriteSpaceman .3s step-start infinite; }
+#spaceman.animate {	
+-moz-animation: spriteSpaceman .3s step-start infinite; 
+-webkit-animation: spriteSpaceman .3s step-start infinite; 
+}
 
 .powerup.o2 {
 	position: absolute;
@@ -156,7 +198,10 @@ ol.meter.hurt li.meter-tick {
 	background: url(o2bottle.png) no-repeat;
 	z-index: 2;
 }
-.powerup.o2.animate {	-webkit-animation: spriteO2bottle .2s step-start infinite; }
+.powerup.o2.animate {
+-moz-animation: spriteO2bottle .2s step-start infinite; 
+-webkit-animation: spriteO2bottle .2s step-start infinite; 
+}
 
 .meteoroid {
 	position: absolute;
@@ -164,13 +209,22 @@ ol.meter.hurt li.meter-tick {
 	z-index: 4;
 }
 .meteoroid.micro { background: url(m-micro.png) no-repeat; }
-.meteoroid.micro.animate { -webkit-animation: spriteMmicro .5s step-start infinite; }
+.meteoroid.micro.animate { 
+-moz-animation: spriteMmicro .5s step-start infinite;
+-webkit-animation: spriteMmicro .5s step-start infinite;
+}
 
 .meteoroid.norm { background: url(m-norm.png) no-repeat; }
-.meteoroid.norm.animate { -webkit-animation: spriteMnorm .6s step-start infinite; }
+.meteoroid.norm.animate { 
+-moz-animation: spriteMnorm .6s step-start infinite; 
+-webkit-animation: spriteMnorm .6s step-start infinite; 
+}
 
 .meteoroid.mega { background: url(m-mega.png) no-repeat; }
-.meteoroid.mega.animate { -webkit-animation: spriteMmega .7s step-start infinite; }
+.meteoroid.mega.animate { 
+-moz-animation: spriteMmega .7s step-start infinite; 
+-webkit-animation: spriteMmega .7s step-start infinite; 
+}
 
 
 .solarwind {
@@ -179,7 +233,10 @@ ol.meter.hurt li.meter-tick {
 	background: url(solarwind.png) no-repeat;
 	z-index: 3;
 }
-.solarwind.animate { -webkit-animation: spriteSolarwind .5s step-start infinite; }
+.solarwind.animate { 
+-moz-animation: spriteSolarwind .5s step-start infinite; 
+-webkit-animation: spriteSolarwind .5s step-start infinite; 
+}
 </style>
 
 <script type="text/javascript">
